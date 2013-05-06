@@ -36,6 +36,7 @@ import arnetwork
 
 
 __author__ = "Bastian Venthur"
+__contributor__ = "Elbert Fliek"
 
 
 ARDRONE_NAVDATA_PORT = 5554
@@ -81,6 +82,12 @@ class ARDrone(object):
     def hover(self):
         """Make the drone hover."""
         self.at(at_pcmd, False, 0, 0, 0, 0)
+
+    def flyTo(self, right, forward, up, turnRight):
+	"""Combine up/down,left/right, forward/backward, turn right/left
+        in one function. Negative inputs result in movement in the opposing
+        direction"""
+        self.at(at_pcmd, True, right, forward, up, turnRight)
 
     def move_left(self):
         """Make the drone move left."""
